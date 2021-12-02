@@ -1,0 +1,31 @@
+on:
+  schedule:
+    - cron: '12 32 1-25 12 *'
+  workflow_dispatch:
+
+name: Update Badges
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+          
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: 1668839
+          session: ${{ secrets.AOC_SESSION }}
+          
+#         Optional inputs:
+#         
+#         year: 2021
+#         leaderboard: 'https://adventofcode.com/2020/leaderboard/private/view/00000.json'
+#         file: 'README.md'
+#         dayRegex: '(?<=https:\/\/img\.shields\.io\/badge\/day%20📅-)[0-9]+(?=-blue)'
+#         starsRegex: '(?<=https:\/\/img\.shields\.io\/badge\/stars%20⭐-)[0-9]+(?=-yellow)'
+          daysCompletedRegex: '(?<=https:\/\/img\.shields\.io\/badge\/days%20completed-)[0-9]+(?=-green)'
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update badges
+          file_pattern: README.md
