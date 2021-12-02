@@ -2,3 +2,8 @@
 
 My solutions for advent of code 2021.
 I'll try to choose a different programming language that I am more or less familiar with each day :)
+
+| Day      | Language | Framework / Build environment |
+| -------- | -------- | ----------------------------- |
+|  [1](01) | [`Kotlin`](https://en.wikipedia.org/wiki/Kotlin_(programming_language)) | [`Gradle`](https://en.wikipedia.org/wiki/Gradle) |
+|  [2](02) | [`Haskell`](https://en.wikipedia.org/wiki/Haskell_(programming_language)) | [`Stack`](https://en.wikipedia.org/wiki/Stack_(Haskell)) |
