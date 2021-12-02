@@ -1,3 +1,12 @@
-*/.gradle/
-*/.idea/
+# General
 */build/
+
+# JVM stuff
+*/.gradle/
+
+# Haskell
+*/.stack-work/
+
+# IntelliJ
+*/.idea/
+*.iml
