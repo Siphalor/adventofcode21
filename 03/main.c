@@ -10,12 +10,8 @@
 int part01(char**);
 int part02(char**);
 
-long bit_count_difference(const long* numbers, size_t numbers_size, long bit_mask);
-struct numbers {
-    long* values;
-    size_t size;
-};
-struct numbers filter_numbers_by_frequency(const long* numbers, size_t numbers_size, size_t bits, bool most);
+long bit_count_difference(const long *numbers, size_t numbers_size, long bit_mask);
+size_t filter_numbers_by_frequency(const long *numbers, size_t numbers_size, long *dest_numbers, size_t bits, bool most);
 long find_number_by_frequency(long *numbers, size_t numbers_size, size_t bits, bool most);
 
 int main(int argc, char *argv[]) {
@@ -85,7 +81,7 @@ int part02(char *argv[]) {
         return 1;
     }
 
-    long* numbers = calloc(64, sizeof (long));
+    long* numbers = malloc(64 * sizeof (long));
     size_t numbers_size = 0;
     size_t numbers_max_size = 64;
     size_t i;
@@ -104,15 +100,15 @@ int part02(char *argv[]) {
                 puts("failed to realloc memory");
                 return 1;
             }
-            memset(numbers + numbers_max_size_bytes, 0, numbers_max_size_bytes);
             numbers_max_size = new_max_size;
         }
+        long value = 0;
         for (i = strlen(buffer) - 2; i != SIZE_MAX; i--) {
             if (buffer[i] == '1') {
-                numbers[numbers_size] |= 1 << (bits - 1 - i);
+                value |= 1 << (bits - 1 - i);
             }
         }
-        numbers_size++;
+        numbers[numbers_size++] = value;
     }
 
     long oxygen_rating = find_number_by_frequency(numbers, numbers_size, bits, true);
@@ -136,7 +132,7 @@ long bit_count_difference(const long* numbers, size_t numbers_size, long bit_mas
     return hits;
 }
 
-struct numbers filter_numbers_by_frequency(const long *numbers, size_t numbers_size, size_t bits, bool most) {
+size_t filter_numbers_by_frequency(const long *numbers, size_t numbers_size, long *dest_numbers, size_t bits, bool most) {
     long bit_mask = 1 << bits;
     long count_diff = bit_count_difference(numbers, numbers_size, bit_mask);
     long filter;
@@ -147,45 +143,41 @@ struct numbers filter_numbers_by_frequency(const long *numbers, size_t numbers_s
     }
     filter <<= bits;
 
-    struct numbers result_numbers = {
-            malloc(numbers_size * sizeof (long)), 0
-    };
-
+    size_t dest_size = 0;
     for (size_t i = 0; i < numbers_size; i++) {
         if ((numbers[i] & bit_mask) == filter) {
-            result_numbers.values[result_numbers.size++] = numbers[i];
+            dest_numbers[dest_size++] = numbers[i];
         }
     }
 
-    return result_numbers;
+    return dest_size;
 }
 
 long find_number_by_frequency(long *numbers, size_t numbers_size, size_t bits, bool most) {
-    long *last_numbers = NULL;
+    long *dest_numbers = malloc(numbers_size * sizeof (long));
+    size_t dest_numbers_size;
     for (size_t i = bits - 1; i != SSIZE_MAX; i--) {
-        struct numbers current_numbers = filter_numbers_by_frequency(numbers, numbers_size, i, most);
-        free(last_numbers);
+        dest_numbers_size = filter_numbers_by_frequency(numbers, numbers_size, dest_numbers, i, most);
 
-        if (current_numbers.size == 1) {
-            long value = current_numbers.values[0];
-            free(current_numbers.values);
+        if (dest_numbers_size == 1) {
+            long value = dest_numbers[0];
+            free(dest_numbers);
             return value;
         }
 
-        numbers = current_numbers.values;
-        last_numbers = numbers;
-        numbers_size = current_numbers.size;
+        numbers = dest_numbers;
+        numbers_size = dest_numbers_size;
     }
     long result;
     if (numbers_size > 1) {
         printf("found more matching numbers than expected: %zu", numbers_size);
         result = numbers[0];
     } else if (numbers_size <= 0) {
-        puts("not matching number found");
-        return -1l;
+        puts("no matching number found");
+        result = -1;
     } else {
         result = numbers[0];
     }
-    free(last_numbers);
+    free(dest_numbers);
     return result;
 }
