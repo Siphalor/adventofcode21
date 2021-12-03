@@ -7,6 +7,12 @@
 # Haskell
 */.stack-work/
 
+# CMake
+*/CMakeFiles/
+*/cmake-*/
+*.cmake
+CMakeCache.txt
+
 # IntelliJ
 */.idea/
 *.iml
