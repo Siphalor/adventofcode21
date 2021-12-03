@@ -90,6 +90,8 @@ int part02(char *argv[]) {
     size_t bits = 0;
     int c;
     while ((c = fgetc(file)) > 0 && c != '\n') bits++;
+    
+    rewind(file);
 
     while (fgets(buffer, sizeof buffer, file) > 0) {
         if (numbers_size == numbers_max_size) {
