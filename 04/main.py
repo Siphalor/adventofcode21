@@ -1,7 +1,7 @@
 import sys
 from typing import IO, Any
 
-import part01
+import part01, part02
 
 BOARD_SIZE = 5
 
@@ -21,7 +21,7 @@ def main():
     if part == "part01":
         part01.run(input_data)
     elif part == "part02":
-        pass
+        part02.run(input_data)
     else:
         print("unrecognized part")
 
