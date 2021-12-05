@@ -27,6 +27,30 @@ pub fn run(input: std::fs::File) {
                     overlaps += 1;
                 }
             }
+        } else { // diagonal at 45 degrees
+            let mut pos = vent.0;
+            loop {
+                let ele = map.get_mut(pos.1).unwrap().get_mut(pos.0).unwrap();
+                *ele += 1;
+                if *ele == 2 {
+                    overlaps += 1;
+                }
+
+                if pos == vent.1 {
+                    break;
+                }
+
+                if pos.0 < vent.1.0 {
+                    pos.0 += 1;
+                } else {
+                    pos.0 -= 1;
+                }
+                if pos.1 < vent.1.1 {
+                    pos.1 += 1;
+                } else {
+                    pos.1 -= 1;
+                }
+            }
         }
     }
 

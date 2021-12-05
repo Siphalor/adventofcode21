@@ -1,5 +1,6 @@
 mod part01;
 mod util;
+mod part02;
 
 fn main() {
     let mut args = std::env::args();
@@ -17,7 +18,9 @@ fn main() {
                 "part01" => {
                     part01::run(file);
                 }
-                "part02" => {}
+                "part02" => {
+                    part02::run(file);
+                }
                 _ => {
                     eprintln!("unknown part argument");
                 }
