@@ -19,7 +19,9 @@ func main() {
 
 	switch os.Args[1] {
 	case "part01":
-		part01(file)
+		simulate(file, 80)
+	case "part02":
+		simulate(file, 256)
 	default:
 		println("unknown part")
 	}

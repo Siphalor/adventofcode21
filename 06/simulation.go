@@ -9,10 +9,10 @@ import (
 	"strconv"
 )
 
-func part01(file *os.File) {
+func simulate(file *os.File, days uint64) {
 	reader := bufio.NewReader(file)
 
-	distribution := make([]int64, 10)
+	distribution := make([]uint64, 10)
 
 	for {
 		part, err := reader.ReadString(',')
@@ -26,7 +26,7 @@ func part01(file *os.File) {
 		}
 	}
 
-	for i := 0; i < 80; i++ {
+	for i := uint64(0); i < days; i++ {
 		for age, count := range distribution {
 			if age == 0 {
 				distribution[7] += count
@@ -39,7 +39,7 @@ func part01(file *os.File) {
 		}
 	}
 
-	var sum int64 = 0
+	var sum uint64 = 0
 	for _, count := range distribution {
 		sum += count
 	}
