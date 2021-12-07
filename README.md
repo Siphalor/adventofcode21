@@ -11,3 +11,4 @@ I'll try to choose a different programming language that I am more or less famil
 |  [4](04) | [`Python`](https://en.wikipedia.org/wiki/Python_(programming_language))   | [`Pipenv`](https://pipenv.pypa.io/)                                        |
 |  [5](05) | [`Rust`](https://en.wikipedia.org/wiki/Rust_(programming_language))       | [`Cargo`](https://en.wikipedia.org/wiki/Rust_(programming_language)#Cargo) |
 |  [6](06) | [`Go`](https://en.wikipedia.org/wiki/Go_(programming_language))           | -                                                                          |
+|  [7](07) | [`Perl`](https://en.wikipedia.org/wiki/Perl)                              | -                                                                          |
