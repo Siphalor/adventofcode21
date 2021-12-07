@@ -6,13 +6,25 @@ if (scalar @ARGV != 2) {
 	die "incorrect number of arguments"
 }
 
-if (@ARGV[0] == "part01") {
-	part01()
+if (@ARGV[0] eq "part01") {
+	calc(\&diff_simple);
+} elsif (@ARGV[0] eq "part02") {
+	calc(\&diff_sum);
 } else {
 	print "invalid part specified"
 }
 
-sub part01 {
+sub diff_simple {
+	return abs(@_[0] - @_[1]);
+}
+
+sub diff_sum {
+	my $v = abs(@_[0] - @_[1]);
+	return ($v + 1) * $v / 2;
+}
+
+sub calc {
+	my ( $diff ) = @_;
 	open(FH, '<', @ARGV[1]) or die $!;
 	my @crabs = split /,/, <FH>;
 	my $max_crab = 0;
@@ -26,9 +38,8 @@ sub part01 {
 	for ($i = 0; $i <= $max_crab; $i++) {
 		my $val = 0;
 		foreach $num (@crabs) {
-			$val = $val + abs($num - $i);
+			$val = $val + $diff->($num, $i);
 		}
-		#print "$i: $val\n";
 
 		if ($best_pos == -1) {
 			$best_pos = 0;
