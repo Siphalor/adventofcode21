@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '32 12 1-25 12 *'
+    - cron: '32 6,12 1-25 12 *'
   workflow_dispatch:
 
 name: Update Badges
