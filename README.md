@@ -12,3 +12,4 @@ I'll try to choose a different programming language that I am more or less famil
 |  [5](05) | [`Rust`](https://en.wikipedia.org/wiki/Rust_(programming_language))       | [`Cargo`](https://en.wikipedia.org/wiki/Rust_(programming_language)#Cargo) |
 |  [6](06) | [`Go`](https://en.wikipedia.org/wiki/Go_(programming_language))           | -                                                                          |
 |  [7](07) | [`Perl`](https://en.wikipedia.org/wiki/Perl)                              | -                                                                          |
+|  [8](08) | [`V`](https://github.com/vlang/v)                                         | -                                                                          |
