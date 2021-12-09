@@ -15,18 +15,9 @@ function error_handler(err)
 	print("execution failed with: ", err)
 end
 
-function part01()
-	local data, risk
-
-	i = 1
-	data = {}
-	for value in io.lines(arg[2])
-	do
-		data[i] = value
-		i = i + 1
-	end
-
-	risk = 0
+function find_minima(data)
+	local minima
+	minima = {}
 	for y = 1,#data,1
 	do
 		for x = 1,#data[y],1
@@ -52,10 +43,30 @@ function part01()
 				goto continue
 			end
 
-			risk = risk + 1 + current
+			minima[#minima+1] = {y, x}
 
 			::continue::
 		end
+	end
+	return minima
+end
+
+function part01()
+	local data, risk
+
+	i = 1
+	data = {}
+	for value in io.lines(arg[2])
+	do
+		data[i] = value
+		i = i + 1
+	end
+
+	risk = 0
+	local minima = find_minima(data)
+	for i, m in ipairs(minima)
+	do 
+		risk = risk + 1 + char_at(data[m[1]], m[2])
 	end
 
 	print(risk)
