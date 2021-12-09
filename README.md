@@ -13,3 +13,4 @@ I'll try to choose a different programming language that I am more or less famil
 |  [6](06) | [`Go`](https://en.wikipedia.org/wiki/Go_(programming_language))           | -                                                                          |
 |  [7](07) | [`Perl`](https://en.wikipedia.org/wiki/Perl)                              | -                                                                          |
 |  [8](08) | [`V`](https://github.com/vlang/v)                                         | -                                                                          |
+|  [9](09) | [`Lua`](https://en.wikipedia.org/wiki/Lua_(programming_language))         | -                                                                          |
