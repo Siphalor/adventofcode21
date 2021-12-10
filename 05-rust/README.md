@@ -6,7 +6,7 @@ I'd say I have pretty good experience with Rust through a lot of different small
 
 ## Notes
 
-Doing this with Rust was pretty fun, although it was of course a lot more verbose than [Python yesterday](../04).
+Doing this with Rust was pretty fun, although it was of course a lot more verbose than [Python yesterday](../04-python).
 
 The syntax for updating a single element in `Vec`s is kind of weird though:
 
