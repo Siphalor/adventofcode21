@@ -7,6 +7,9 @@
 # Haskell
 */.stack-work/
 
+# Python
+*/__pycache__/
+
 # CMake
 */CMakeFiles/
 */cmake-*/
