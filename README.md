@@ -15,3 +15,4 @@ I'll try to choose a different programming language that I am more or less famil
 | [8](08-v)       | [`V`](https://github.com/vlang/v)                                           | -                                                                          |
 | [9](09-lua)     | [`Lua`](https://en.wikipedia.org/wiki/Lua_(programming_language))           | -                                                                          |
 | [10](10-chef)   | [`Chef (link to original)`](https://www.dangermouse.net/esoteric/chef.html) | [`chef-rs`](https://github.com/Siphalor/chef-rs)                           |
+| [11](11-julia)  | [`Julia`](https://en.wikipedia.org/wiki/Julia_(programming_language))       | -                                                                          |
