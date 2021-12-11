@@ -12,7 +12,7 @@ function main()
     if ARGS[1] == "part01"
         part01(data)
     elseif ARGS[1] == "part02"
-
+        part02(data)
     end
 end
 
@@ -36,6 +36,33 @@ function part01(data)
     end
 
     print(flashes)
+end
+
+function part02(data)
+    data_len = length(data)
+    i = 0
+    while true
+        i += 1
+        for x in 1:size(data, 1)
+            for y in 1:size(data, 2)
+                bump(data, x, y)
+            end
+        end
+
+        flashes = 0
+        for x in 1:size(data, 1)
+            for y in 1:size(data, 2)
+                if data[x, y] > 9
+                    flashes += 1
+                    data[x, y] = 0
+                end
+            end
+        end
+        if flashes == data_len
+            print(i)
+            break
+        end
+    end
 end
 
 function bump(data, x, y)
