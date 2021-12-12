@@ -16,3 +16,4 @@ I'll try to choose a different programming language that I am more or less famil
 | [9](09-lua)     | [`Lua`](https://en.wikipedia.org/wiki/Lua_(programming_language))           | -                                                                          |
 | [10](10-chef)   | [`Chef (link to original)`](https://www.dangermouse.net/esoteric/chef.html) | [`chef-rs`](https://github.com/Siphalor/chef-rs)                           |
 | [11](11-julia)  | [`Julia`](https://en.wikipedia.org/wiki/Julia_(programming_language))       | -                                                                          |
+| [12](12-c++)    | [`C++`](https://en.wikipedia.org/wiki/C%2B%2B)                              | [`CMake`](https://en.wikipedia.org/wiki/CMake)                             |
