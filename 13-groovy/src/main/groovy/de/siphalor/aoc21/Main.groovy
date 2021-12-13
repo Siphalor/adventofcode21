@@ -17,7 +17,8 @@ class Main {
 				println(dots)
 				break
 			case "part02":
-
+				paper.folds.forEach { it.apply() }
+				paper.print()
 				break
 			default:
 				println("hi")
