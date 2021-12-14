@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+	id 'application'
+}
+
+group 'de.siphalor.aoc21'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+mainClassName = "de.siphalor.aoc21.d14.Main"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+test {
+}
