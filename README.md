@@ -1,4 +1,4 @@
-# Advent of Code 2021 ![](https://img.shields.io/badge/day%20📅-14-blue) ![](https://img.shields.io/badge/days%20completed-14-green) ![](https://img.shields.io/badge/stars%20⭐-28-yellow)
+# Advent of Code 2021 ![](https://img.shields.io/badge/day%20📅-15-blue) ![](https://img.shields.io/badge/days%20completed-14-green) ![](https://img.shields.io/badge/stars%20⭐-28-yellow)
 
 My solutions for advent of code 2021.
 I'll try to choose a different programming language that I am more or less familiar with each day :)
