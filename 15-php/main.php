@@ -11,6 +11,7 @@ case "part01":
     include_once "part01.php";
     break;
 case "part02":
+    include_once "part02.php";
     break;
 }
 ?>
