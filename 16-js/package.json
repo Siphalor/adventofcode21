@@ -1,0 +1,24 @@
+{
+  "name": "d16",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+	"aoc21-d16": "./src/index.js"
+  },
+  "scripts": {
+	"start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Siphalor/adventofcode21.git"
+  },
+  "author": "Siphalor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Siphalor/adventofcode21/issues"
+  },
+  "homepage": "https://github.com/Siphalor/adventofcode21#readme"
+}
