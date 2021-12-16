@@ -7,7 +7,7 @@ export class Packet {
         const type = buffer.readFixedInt(3);
         let packet;
         switch (type) {
-            case 4: {
+            case 4n: {
                 packet = new LiteralPacket()
                 break
             }
@@ -46,6 +46,10 @@ export class LiteralPacket extends Packet {
         return this.#literal
     }
 
+    getValue() {
+        return this.#literal
+    }
+
     toString() {
         return "literal{ " + this.#literal + " }"
     }
@@ -67,6 +71,27 @@ export class OperatorPacket extends Packet {
             while (buffer.bitOffset - beginOffset < totalBits) {
                 this.#subPackets.push(Packet.from(buffer))
             }
+        }
+    }
+
+    getValue() {
+        switch (this.type) {
+            case 0n:
+                return this.#subPackets.map(packet => packet.getValue()).reduce((a, b) => a + b)
+            case 1n:
+                return this.#subPackets.map(packet => packet.getValue()).reduce((a, b) => a * b)
+            case 2n:
+                return this.#subPackets.map(packet => packet.getValue()).reduce((a, b) => a < b ? a : b)
+            case 3n:
+                return this.#subPackets.map(packet => packet.getValue()).reduce((a, b) => a > b ? a : b)
+            case 5n:
+                return this.#subPackets[0].getValue() > this.#subPackets[1].getValue() ? 1n : 0n
+            case 6n:
+                return this.#subPackets[0].getValue() < this.#subPackets[1].getValue() ? 1n : 0n
+            case 7n:
+                return this.#subPackets[0].getValue() === this.#subPackets[1].getValue() ? 1n : 0n
+            default:
+                throw "unrecognized operator: " + this.type
         }
     }
 

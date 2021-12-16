@@ -37,25 +37,25 @@ export class BitBuffer {
     }
 
     readFixedInt(width) {
-        let value = 0;
+        let value = 0n
         for (let i = 0; i < width; i++) {
-            value <<= 1
+            value <<= 1n
             if (this.readBit()) {
-                value |= 1
+                value |= 1n
             }
         }
         return value
     }
 
     readVarInt() {
-        let value = 0
+        let value = 0n
         let cnt = true
         while (cnt) {
             if (!this.readBit()) {
                 cnt = false
             }
             let partial = this.readFixedInt(4)
-            value <<= 4
+            value <<= 4n
             value |= partial
         }
         return value

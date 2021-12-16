@@ -22,6 +22,8 @@ try {
 			break
 		}
 		case "part02": {
+			console.log(packet.toString())
+			console.log(packet.getValue())
 			break
 		}
 		default: {
