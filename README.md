@@ -22,3 +22,4 @@ I'll try to choose a different programming language that I am more or less famil
 | [15](15-php)     | [`PHP`](https://en.wikipedia.org/wiki/PHP_(programming_language))           | -                                                                          |
 | [16](16-js)      | [`JavaScript`](https://en.wikipedia.org/wiki/JavaScript)                    | -                                                                          |
 | [17](17-clojure) | [`Clojure`](https://en.wikipedia.org/wiki/Clojure)                          | -                                                                          |
+| [18](18-r)       | [`R`](https://en.wikipedia.org/wiki/R_(programming_language))               | -                                                                          |
