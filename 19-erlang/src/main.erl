@@ -5,15 +5,29 @@
 main(part01, FilePath) ->
   Scanners_ = parse_file(FilePath),
   [First | Scanners] = lists:reverse(Scanners_),
-  io:format("count: ~p~n", [length(combine_all(First, Scanners))]).
+  {_, Beacons} = combine_all(First, Scanners, []),
+  io:format("count: ~p~n", [length(Beacons)]);
 
-combine_all(Result, []) ->
-  Result;
+main(part02, FilePath) ->
+  Scanners_ = parse_file(FilePath),
+  [First | Scanners] = lists:reverse(Scanners_),
+  {SPs, _} = combine_all(First, Scanners, []),
+  AllSPs = [{0,0,0} | SPs],
+  io:format("all: ~p~nmax: ~p~n", [AllSPs, max_distance(AllSPs, AllSPs)]).
 
-combine_all(Acc, New) ->
+max_distance([], _) -> 0;
+
+max_distance([{SP1X, SP1Y, SP1Z} | SP1Rest], SP2s) ->
+  Max = lists:max(lists:map(fun({SP2X, SP2Y, SP2Z}) -> abs(SP2X - SP1X) + abs(SP2Y - SP1Y) + abs(SP2Z - SP1Z) end, SP2s)),
+  max(Max, max_distance(SP1Rest, SP2s)).
+
+combine_all(Result, [], Scanners) ->
+  {Scanners, Result};
+
+combine_all(Acc, New, Scanners) ->
   io:format("acc: ~w, left: ~w~n", [length(Acc), length(New)]),
-  {Res, New_} = combine_any_scanners(Acc, New, []),
-  combine_all(Res, New_).
+  {ScannerPos, Res, New_} = combine_any_scanners(Acc, New, []),
+  combine_all(Res, New_, [ScannerPos | Scanners]).
 
 combine_any_scanners(_, [], _) ->
   error("no matches");
@@ -22,7 +36,7 @@ combine_any_scanners(KnownBeacons, [NewBeacons|NewRest], Checked) ->
   io:fwrite("next scanner\n"),
   case combine_scanners(KnownBeacons, KnownBeacons, NewBeacons) of
     next -> combine_any_scanners(KnownBeacons, NewRest, [NewBeacons | Checked]);
-    ResBeacons -> {lists:append(ResBeacons, KnownBeacons), lists:append(Checked, NewRest)}
+    {ScannerPos, ResBeacons} -> {ScannerPos, lists:append(ResBeacons, KnownBeacons), lists:append(Checked, NewRest)}
   end.
 
 combine_scanners([], _, _) ->
@@ -32,7 +46,7 @@ combine_scanners([{B_BaseX, B_BaseY, B_BaseZ}| B_BaseRest], B_KnownBeacons, C_Ne
   R_KnownBeacons = lists:map(fun({BX, BY, BZ}) -> {BX - B_BaseX, BY - B_BaseY, BZ - B_BaseZ} end, B_KnownBeacons),
   case combine_scanners_find(R_KnownBeacons, C_NewBeacons, C_NewBeacons) of
     next -> combine_scanners(B_BaseRest, B_KnownBeacons, C_NewBeacons);
-    New -> lists:map(fun({NX, NY, NZ}) -> {NX + B_BaseX, NY + B_BaseY, NZ + B_BaseZ} end, New)
+    {{CX, CY, CZ}, New} -> {{B_BaseX-CX, B_BaseY-CY, B_BaseZ-CZ}, lists:map(fun({NX, NY, NZ}) -> {NX + B_BaseX, NY + B_BaseY, NZ + B_BaseZ} end, New)}
   end.
 
 combine_scanners_find(_, [], _) ->
@@ -51,7 +65,11 @@ combine_scanners_find(R_KnownBeacons, [{CX, CY, CZ} | C_NewRest], C_NewBeacons) 
     {-1, -1, -1}
   ])) of
     next -> combine_scanners_find(R_KnownBeacons, C_NewRest, C_NewBeacons);
-    New -> New
+    {{XX, XY, XZ, YX, YY, YZ, ZX, ZY, ZZ}, New} -> {{
+      CX * XX + CY * YX + CZ * ZX,
+      CX * XY + CY * YY + CZ * ZY,
+      CX * XZ + CY * YZ + CZ * ZZ
+    }, New}
   end.
 
 create_coefficients([]) -> [];
@@ -80,7 +98,7 @@ combine_scanners_find_coeff(R_KnownBeacons, R_NewBeacons, [{XX, XY, XZ, YX, YY, 
   %io:format("~p ", [length(Matching)]),
   %io:format("~p : ~p~n", [length(Matching), length(Unknown)]),
   if
-    length(Matching) >= 12 -> Unknown;
+    length(Matching) >= 12 -> {{XX, XY, XZ, YX, YY, YZ, ZX, ZY, ZZ}, Unknown};
     true -> combine_scanners_find_coeff(R_KnownBeacons, R_NewBeacons, CoefficientRest)
   end.
 
