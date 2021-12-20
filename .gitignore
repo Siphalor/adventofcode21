@@ -1,5 +1,7 @@
 # General
 */build/
+*/out/
+*.dump
 
 # JVM stuff
 */.gradle/
