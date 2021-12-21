@@ -44,18 +44,27 @@ class Img
     cnt
   end
 
+  def pad(padding)
+    x_padding = [false] * padding
+    Img.new Array.new(self.height + 2 * padding) { |y|
+      y -= padding
+      if y >= 0 and y < @data.size
+        x_padding + @data[y] + x_padding
+      else
+        Array.new(self.width + 2 * padding, false)
+      end
+    }
+  end
+
   def enhance(lookup)
-    pad = 8
-    height = self.height + pad * 2
-    width = self.width + pad * 2
-    result = Array.new(height) { Array.new(width) }
-    (0...height).each { |y|
-      (0...width).each { |x|
+    result = Array.new(self.height) { Array.new(self.width) }
+    (0...self.height).each { |y|
+      (0...self.width).each { |x|
         val = 0
         i = 0b1_0000_0000
         (-1..1).each { |dy|
           (-1..1).each { |dx|
-            if self[y + dy - pad, x + dx - pad]
+            if self[y + dy, x + dx]
               val |= i
             end
             i >>= 1
@@ -76,4 +85,16 @@ img = Img.new img
 img.print
 puts
 
-puts img.enhance(enhancement).enhance(enhancement).cut_out(10).count_light
+case part
+when "part01"
+  puts img.pad(12).enhance(enhancement).enhance(enhancement).cut_out(10).count_light
+when "part02"
+  img = img.pad(100)
+  (1..50).each { |i|
+    puts "step #{i}"
+    img = img.enhance(enhancement)
+  }
+  puts img.cut_out(50).count_light
+else
+  puts "unknown subcommand"
+end
