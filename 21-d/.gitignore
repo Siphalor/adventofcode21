@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/21-d
+21-d.so
+21-d.dylib
+21-d.dll
+21-d.a
+21-d.lib
+21-d-test-*
+*.exe
+*.o
+*.obj
+*.lst
+.fuse*

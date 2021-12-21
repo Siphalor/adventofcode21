@@ -1,0 +1,10 @@
+{
+	"authors": [
+		"Siphalor"
+	],
+	"copyright": "Copyright © 2021, Siphalor",
+	"description": "Day 21: D",
+	"license": "proprietary",
+	"name": "21-d",
+	"dflags": ["-fPIE"]
+}
