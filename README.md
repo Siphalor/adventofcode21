@@ -23,3 +23,6 @@ I'll try to choose a different programming language that I am more or less famil
 | [16](16-js)      | [`JavaScript`](https://en.wikipedia.org/wiki/JavaScript)                    | -                                                                          |
 | [17](17-clojure) | [`Clojure`](https://en.wikipedia.org/wiki/Clojure)                          | -                                                                          |
 | [18](18-r)       | [`R`](https://en.wikipedia.org/wiki/R_(programming_language))               | -                                                                          |
+| [19](19-erlang)  | [`Erlang`](https://en.wikipedia.org/wiki/Erlang_(programming_language))     | -                                                                          |
+| [20](20-ruby)    | [`Ruby`](https://en.wikipedia.org/wiki/Ruby_(programming_language))         | -                                                                          |
+| [21](21-d)       | [`D`](https://en.wikipedia.org/wiki/D_(programming_language))               | [`dub`](https://github.com/dlang/dub)                                      |
